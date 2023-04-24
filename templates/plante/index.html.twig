@@ -1,35 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Plante index{% endblock %}
+{% block title %}Plante index
+{% endblock %}
 
 {% block body %}
-    <h1>Plante index</h1>
+	<div class="row g-3 mb-4 align-items-center justify-content-between">
+		<div class="col-auto">
+			<h1 class="app-page-title mb-0">Mes plantes</h1>
+		</div>
+		<div class="col-auto">
+			<div class="page-utilities">
+				<div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+					<div class="col-auto">
+						<form class="docs-search-form row gx-1 align-items-center">
+							<div class="col-auto">
+								<input type="text" id="search-docs" name="searchdocs" class="form-control search-docs" placeholder="Search">
+							</div>
+							<div class="col-auto">
+								<button type="submit" class="btn app-btn-secondary">Search</button>
+							</div>
+						</form>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for plante in plantes %}
-            <tr>
-                <td>{{ plante.id }}</td>
-                <td>{{ plante.label }}</td>
-                <td>
-                    <a href="{{ path('app_plante_show', {'id': plante.id}) }}">show</a>
-                    <a href="{{ path('app_plante_edit', {'id': plante.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+					</div>
+					<!--//col-->
+					<div class="col-auto">
 
-    <a href="{{ path('app_plante_new') }}">Create new</a>
+						<select class="form-select w-auto">
+							<option selected="" value="option-1">All</option>
+							<option value="option-2">Text file</option>
+							<option value="option-3">Image</option>
+							<option value="option-4">Spreadsheet</option>
+							<option value="option-5">Presentation</option>
+							<option value="option-6">Zip file</option>
+
+						</select>
+					</div>
+					<div class="col-auto">
+						<a class="btn app-btn-primary" href="{{ path('app_plante_new') }}">
+							<i class="fa-solid fa-seedling"></i>
+							<i class="fa-solid fa-plus fa-2xs pe-1"></i>Ajouter une Plante</a>
+					</div>
+				</div>
+				<!--//row-->
+			</div>
+			<!--//table-utilities-->
+		</div>
+		<!--//col-auto-->
+	</div>
+	<div class="row g-4">
+
+		{% for plante in plantes %}
+
+			<div class="col-6 col-md-4 col-xl-3 col-xxl-3">
+				<div class="card mb-3">
+					<img class="card-img-top" src="{{ vich_uploader_asset(plante, 'imageFile') }}" alt="{{ plante.imageName }}">
+					<div class="card-body">
+						<h5 class="card-title">{{ plante.label }}</h5>
+						<p class="card-text">{{ plante.description }}</p>
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+						<a href="{{ path('app_plante_show', {'id': plante.id}) }}" class="btn btn-primary">show</a>
+						<a href="{{ path('app_plante_edit', {'id': plante.id}) }}" class="btn btn-primary">edit</a>
+					</div>
+				</div>
+
+			</div>
+		{% else %}
+			<span>Aucune plante</span>
+		{% endfor %}
+	</div>
 {% endblock %}

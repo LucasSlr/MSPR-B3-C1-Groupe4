@@ -6,6 +6,8 @@ use App\Entity\Plante;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PlanteType extends AbstractType
 {
@@ -13,7 +15,8 @@ class PlanteType extends AbstractType
     {
         $builder
             ->add('label')
-        ;
+            ->add('imageFile', VichImageType::class, [])
+            ->add('description');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
