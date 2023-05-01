@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:msprapp/view/camera.dart';
 import 'package:msprapp/view/login.dart';
 import 'package:msprapp/view/maps.dart';
+import 'package:msprapp/widgets/picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
               if(index == 1){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CameraPage()),
+                MaterialPageRoute(builder: (context) => ImagePicker()),
               );
             }
 
