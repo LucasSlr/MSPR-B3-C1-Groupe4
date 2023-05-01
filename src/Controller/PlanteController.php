@@ -20,6 +20,8 @@ class PlanteController extends AbstractController
      */
     public function index(PlanteRepository $planteRepository): Response
     {
+        $projectRoot = $this->getParameter('kernel.project_dir');
+        // $getimageSize = getimagesize($projectRoot . '');
         return $this->render('plante/index.html.twig', [
             'plantes' => $planteRepository->findAll(),
         ]);
@@ -81,7 +83,7 @@ class PlanteController extends AbstractController
      */
     public function delete(Request $request, Plante $plante, PlanteRepository $planteRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$plante->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $plante->getId(), $request->request->get('_token'))) {
             $planteRepository->remove($plante, true);
         }
 
