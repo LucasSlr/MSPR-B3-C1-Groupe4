@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:msprapp/view/homepage.dart';
+import 'package:msprapp/view/image_picker.dart';
+
+import 'homepagebota.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -229,10 +232,25 @@ class _LoginScreenState extends State<LoginScreen> {
         (
         // onPressed: () => print([login.text, pass.text]),
         onPressed: () {
+          if(login.text == "test.user"){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          }
+          if(login.text == "test.botaniste"){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePageBota()),
+            );
+          }
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HomePage()),
           );
+
+
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
@@ -316,7 +334,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 60),
-                      buildPass(),
+                      buildLogin(),
                       SizedBox(height: 30),
                       buildPassComfirm(),
                       SizedBox(height: 30),
