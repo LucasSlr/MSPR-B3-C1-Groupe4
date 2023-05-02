@@ -9,13 +9,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-import '../../configs/image_picker_configs.dart';
-import '../../models/image_object.dart';
-import '../../utils/image_utils.dart';
-import '../../utils/log_utils.dart';
-import '../common/portrait_mode_mixin.dart';
-import '../viewer/image_viewer.dart';
-import 'media_album.dart';
+import '../configs/image_picker_configs.dart';
+import '../models/image_object.dart';
+import '../utils/image_utils.dart';
+import '../utils/log_utils.dart';
+import '../widgets/common/portrait_mode_mixin.dart';
+import '../widgets/viewer/image_viewer.dart';
+import '../widgets/picker/media_album.dart';
 
 /// Picker mode definition: Camera or Album (Photo gallery of device)
 class PickerMode {

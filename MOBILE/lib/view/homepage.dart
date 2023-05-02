@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:msprapp/view/login.dart';
 import 'package:msprapp/view/maps.dart';
-import 'package:msprapp/widgets/picker/image_picker.dart';
+import 'package:msprapp/view/image_picker.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -18,15 +18,54 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override build(BuildContext context){
     return Scaffold(
-      // body: Container(
-      //   height: 100,
-      //   width: 100,
-      //   margin: const EdgeInsets.all(100),
-      //   child: Text("A Rosa-je"),
-      //   decoration: BoxDecoration(
-      //   color: Colors.green,
-      //   ),
-      // ),
+      body: Container(
+        child: ListView(
+            children: <Widget>[
+              SizedBox(height: 10.0),
+              _buildWidgetTitle(),
+              SizedBox(height: 50.0),
+              _buildSectionTitle('Mes Plantes'),
+              SizedBox(height: 20.0),
+              _buildSectionItem('Pissenlit'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Fougère'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Orchidée'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Tulipes'),
+
+              SizedBox(height: 20.0),
+              _buildSectionTitle('Les plantes Autours'),
+              SizedBox(height: 20.0),
+              _buildSectionItem('Cactus'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Lilas'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Roses'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Hortensia'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Menthe'),
+
+
+              SizedBox(height: 20.0),
+              _buildSectionTitle('Conseil entretient'),
+              SizedBox(height: 20.0),
+              _buildSectionItem('Vos Plantes'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Astuce'),
+
+              SizedBox(height: 20.0),
+              _buildSectionTitle('Gardes'),
+              SizedBox(height: 20.0),
+              _buildSectionItem('Demander une garde'),
+              SizedBox(height: 10.0),
+              _buildSectionItem('Historique'),
+              SizedBox(height: 20.0),
+            ],
+        ),
+      ),
+
     bottomNavigationBar: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -144,6 +183,110 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     ),
+    );
+  }
+
+  _buildWidgetTitle(){
+    return Container(
+      height: 65,
+      decoration: BoxDecoration(
+        color: Colors.green
+      ),
+      child: Text('A Rosa-je',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 50,
+          color: Colors.white
+        ),
+      ),
+
+    );
+  }
+
+  _buildSectionHome(){
+    return Container(
+        child: ListView(
+          children: <Widget>[
+            SizedBox(height: 10.0),
+            _buildWidgetTitle(),
+            SizedBox(height: 50.0),
+            _buildSectionTitle('Mes Plantes'),
+            SizedBox(height: 20.0),
+            _buildSectionItem('Pissenlit'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Fougère'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Orchidée'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Tulipes'),
+
+            SizedBox(height: 20.0),
+            _buildSectionTitle('Les plantes Autours'),
+            SizedBox(height: 20.0),
+            _buildSectionItem('Cactus'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Lilas'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Roses'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Hortensia'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Menthe'),
+
+
+            SizedBox(height: 20.0),
+            _buildSectionTitle('Conseil Entretient'),
+            SizedBox(height: 20.0),
+            _buildSectionItem('Vos Plantes'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Astuce'),
+
+            SizedBox(height: 20.0),
+            _buildSectionTitle('Gardes'),
+            SizedBox(height: 20.0),
+            _buildSectionItem('Demander une garde'),
+            SizedBox(height: 10.0),
+            _buildSectionItem('Historique'),
+            SizedBox(height: 20.0),
+          ],
+        ),
+    );
+  }
+
+
+  _buildSectionTitle(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            '$title',
+            style: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildSectionItem(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            '$title',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
