@@ -11,6 +11,7 @@ import 'package:msprapp/view/plantepage.dart';
 
 import 'astucepage.dart';
 import 'conseilpage.dart';
+import 'demandepage.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -63,9 +64,9 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20.0),
               _buildSectionTitle('Gardes'),
               SizedBox(height: 20.0),
-              _buildSectionItemGarde('Demander une garde'),
+              _buildSectionItemDemanderGarde('Demander une garde'),
               SizedBox(height: 10.0),
-              _buildSectionItemDemanderGarde('Historique'),
+              _buildSectionItemGarde('Historique'),
               SizedBox(height: 20.0),
             ],
         ),
@@ -344,7 +345,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildSectionItemGarde(String title) {
+  _buildSectionItemDemanderGarde(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: ElevatedButton(
@@ -363,7 +364,7 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => DemandeGarde()),
           );
         },
         style: ElevatedButton.styleFrom(
@@ -373,7 +374,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildSectionItemDemanderGarde(String title) {
+  _buildSectionItemGarde(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: ElevatedButton(

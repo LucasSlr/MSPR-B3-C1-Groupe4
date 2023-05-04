@@ -245,11 +245,12 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           }
 
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage()),
-          );
-
+          if(login.text != "test.user" && login.text != "test.botaniste"){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          }
 
         },
         style: ElevatedButton.styleFrom(
