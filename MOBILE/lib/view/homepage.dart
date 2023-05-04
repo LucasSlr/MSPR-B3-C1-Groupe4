@@ -6,6 +6,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:msprapp/view/login.dart';
 import 'package:msprapp/view/maps.dart';
 import 'package:msprapp/view/image_picker.dart';
+import 'package:msprapp/view/planteautourpage.dart';
+import 'package:msprapp/view/plantepage.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -26,41 +28,41 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 50.0),
               _buildSectionTitle('Mes Plantes'),
               SizedBox(height: 20.0),
-              _buildSectionItem('Pissenlit'),
+              _buildSectionItemPlante('Pissenlit'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Fougère'),
+              _buildSectionItemPlante('Fougère'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Orchidée'),
+              _buildSectionItemPlante('Orchidée'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Tulipes'),
+              _buildSectionItemPlante('Tulipes'),
 
               SizedBox(height: 20.0),
               _buildSectionTitle('Les plantes Autours'),
               SizedBox(height: 20.0),
-              _buildSectionItem('Cactus'),
+              _buildSectionItemPlanteAutour('Cactus'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Lilas'),
+              _buildSectionItemPlanteAutour('Lilas'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Roses'),
+              _buildSectionItemPlanteAutour('Roses'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Hortensia'),
+              _buildSectionItemPlanteAutour('Hortensia'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Menthe'),
+              _buildSectionItemPlanteAutour('Menthe'),
 
 
               SizedBox(height: 20.0),
-              _buildSectionTitle('Conseil entretient'),
+              _buildSectionTitle('Conseil Entretient'),
               SizedBox(height: 20.0),
-              _buildSectionItem('Vos Plantes'),
+              _buildSectionItemConseil('Vos Plantes'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Astuce'),
+              _buildSectionItemConseilMesPlante('Astuce'),
 
               SizedBox(height: 20.0),
               _buildSectionTitle('Gardes'),
               SizedBox(height: 20.0),
-              _buildSectionItem('Demander une garde'),
+              _buildSectionItemGarde('Demander une garde'),
               SizedBox(height: 10.0),
-              _buildSectionItem('Historique'),
+              _buildSectionItemDemanderGarde('Historique'),
               SizedBox(height: 20.0),
             ],
         ),
@@ -190,6 +192,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       height: 65,
       decoration: BoxDecoration(
+        // color: Color.fromARGB(250, 21, 163, 98)
         color: Colors.green
       ),
       child: Text('A Rosa-je',
@@ -200,56 +203,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
 
-    );
-  }
-
-  _buildSectionHome(){
-    return Container(
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: 10.0),
-            _buildWidgetTitle(),
-            SizedBox(height: 50.0),
-            _buildSectionTitle('Mes Plantes'),
-            SizedBox(height: 20.0),
-            _buildSectionItem('Pissenlit'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Fougère'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Orchidée'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Tulipes'),
-
-            SizedBox(height: 20.0),
-            _buildSectionTitle('Les plantes Autours'),
-            SizedBox(height: 20.0),
-            _buildSectionItem('Cactus'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Lilas'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Roses'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Hortensia'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Menthe'),
-
-
-            SizedBox(height: 20.0),
-            _buildSectionTitle('Conseil Entretient'),
-            SizedBox(height: 20.0),
-            _buildSectionItem('Vos Plantes'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Astuce'),
-
-            SizedBox(height: 20.0),
-            _buildSectionTitle('Gardes'),
-            SizedBox(height: 20.0),
-            _buildSectionItem('Demander une garde'),
-            SizedBox(height: 10.0),
-            _buildSectionItem('Historique'),
-            SizedBox(height: 20.0),
-          ],
-        ),
     );
   }
 
@@ -272,20 +225,176 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildSectionItem(String title) {
+  _buildSectionItemPlante(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            '$title',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w500,
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              '$title',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+        onPressed : () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PlantePage('$title')),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  _buildSectionItemPlanteAutour(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              '$title',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        onPressed : () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PlanteAutourPage()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  _buildSectionItemConseil(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              '$title',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        onPressed : () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  _buildSectionItemConseilMesPlante(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              '$title',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        onPressed : () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  _buildSectionItemGarde(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              '$title',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        onPressed : () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  _buildSectionItemDemanderGarde(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              '$title',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        onPressed : () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
       ),
     );
   }

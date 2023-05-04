@@ -16,6 +16,7 @@ import '../utils/log_utils.dart';
 import '../widgets/common/portrait_mode_mixin.dart';
 import '../widgets/viewer/image_viewer.dart';
 import '../widgets/picker/media_album.dart';
+import 'homepage.dart';
 
 /// Picker mode definition: Camera or Album (Photo gallery of device)
 class PickerMode {
@@ -484,6 +485,19 @@ class _ImagePickerState extends State<ImagePicker>
               context,
               _appBarBackgroundColor,
               _appBarTextColor,
+
+            ),
+            leading: ElevatedButton(
+              onPressed: (){
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+              child: null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                disabledBackgroundColor: Colors.green,
+              ),
             ),
             backgroundColor: Colors.green,
             foregroundColor: _appBarTextColor,
