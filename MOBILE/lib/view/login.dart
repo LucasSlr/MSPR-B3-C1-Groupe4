@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:msprapp/view/homepage.dart';
-import 'package:msprapp/view/image_picker.dart';
 
 import 'homepagebota.dart';
 

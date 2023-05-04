@@ -105,7 +105,6 @@ class PlantePage extends StatelessWidget {
   }
 
   _buildImagePlante(String image){
-    print(image);
     return ClipRRect(
       borderRadius: BorderRadius.circular(20.0),
       child: Image.asset(
