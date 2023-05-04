@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ConseilPage extends StatelessWidget {
-  const ConseilPage({Key? key}) : super(key: key);
+class AstucePage extends StatelessWidget {
+  const AstucePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +16,13 @@ class ConseilPage extends StatelessWidget {
             SizedBox(height: 30.0),
             _buildSectionTitle(),
             SizedBox(height: 10.0),
-            _buildSectionTitlePlante('Les Conseils'),
+            _buildSectionTitlePlante('Les Astuces'),
             SizedBox(height: 20.0),
-            _buildSectionItemPlante('Conseil de test.botaniste (Pissenlit)'),
-            SizedBox(height: 10.0),
-            _buildSectionItemConseilPissenlit(),
+            _buildSectionItemConseil('Mettre les plantes sur le sol \nest un bon moyen de \nraffraichir la racine'),
             SizedBox(height: 20.0),
-            _buildSectionItemPlante('Conseil de test.botaniste Orchidée'),
-            SizedBox(height: 10.0),
-            _buildSectionItemConseilOrchidee(),
+            _buildSectionItemConseil('N\'hésitez pas à consulter un \nspécialiste pour vous aider à placer \nles plantes dans votre maison'),
             SizedBox(height: 20.0),
-            _buildSectionItemPlante('Conseil de test.botaniste Tulipes'),
-            SizedBox(height: 10.0),
-            _buildSectionItemConseilTulipe(),
+            _buildSectionItemConseil('L\'éxes d\'arrosage est \nplus redoutable que son \ninsuffisance'),
           ],
         ),
       ),
@@ -56,7 +50,7 @@ class ConseilPage extends StatelessWidget {
   _buildSectionTitle() {
     return Container(
       height: 65,
-      child: Text('Conseil Botaniste',
+      child: Text('Astuce Botaniste',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 35,
@@ -68,22 +62,21 @@ class ConseilPage extends StatelessWidget {
     );
   }
 
-  _buildSectionItemPlante(String title) {
+  _buildSectionItemConseil(String conseil) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              '$title',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w500,
-              ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            '$conseil',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -94,10 +87,7 @@ class ConseilPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            'Necessite peu d\'entretien \n'
-            'Maintenir sur sol frais \n'
-            'Arrosage quotidien'
-            ,
+            'Mettre les plantes sur le sol \nest un bon moyen de \nraffraichir la racine',
             style: TextStyle(
               color: Colors.black,
               fontSize: 20.0,
@@ -116,7 +106,7 @@ class ConseilPage extends StatelessWidget {
         children: <Widget>[
           Text(
             'Arrosage Fréquent \n'
-            'Placé la plante proche d\'une \nsource lumineuse \n',
+                'Placé la plante proche d\'une \nsource lumineuse',
             style: TextStyle(
               color: Colors.black,
               fontSize: 20.0,
@@ -135,9 +125,8 @@ class ConseilPage extends StatelessWidget {
         children: <Widget>[
           Text(
             'A proteger du soleil \n'
-            'Éloignée des sources de chaleur \n'
-            'Arrosage quotidien'
-            ,
+                'Éloignée des sources de chaleur \n'
+                'Arrosage quotidien',
             style: TextStyle(
               color: Colors.black,
               fontSize: 20.0,
