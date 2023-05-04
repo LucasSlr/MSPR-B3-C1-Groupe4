@@ -9,6 +9,8 @@ import 'package:msprapp/view/image_picker.dart';
 import 'package:msprapp/view/planteautourpage.dart';
 import 'package:msprapp/view/plantepage.dart';
 
+import 'conseilpage.dart';
+
 class HomePage extends StatefulWidget {
 
   const HomePage({Key? key}): super(key: key);
@@ -273,7 +275,7 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => PlanteAutourPage()),
+            MaterialPageRoute(builder: (context) => PlanteAutourPage('$title')),
           );
         },
         style: ElevatedButton.styleFrom(
@@ -302,7 +304,7 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => ConseilPage()),
           );
         },
         style: ElevatedButton.styleFrom(
