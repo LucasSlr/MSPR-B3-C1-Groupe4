@@ -100,7 +100,7 @@ class _HomePageBotaState extends State<HomePageBota> {
             if(index == 2){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MapsPage()),
+                MaterialPageRoute(builder: (context) => LocationPage()),
               );
             }
 

@@ -4,14 +4,14 @@ import 'package:msprapp/view/homepage.dart';
 
 // const LatLng currentLocation = LatLng( 43.633735, 3.853324);
 
-class MapsPage extends StatefulWidget {
-  const MapsPage({Key? key}) : super(key: key);
+class LocationPage extends StatefulWidget {
+  const LocationPage({Key? key}) : super(key: key);
 
   @override
-  State<MapsPage> createState() => _MapsPageState();
+  State<LocationPage> createState() => _LocationPageState();
 }
 
-class _MapsPageState extends State<MapsPage> {
+class _LocationPageState extends State<LocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,6 @@ class _MapsPageState extends State<MapsPage> {
           child: null,
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.green,
-            disabledBackgroundColor: Colors.green,
           ),
         ),
       ),

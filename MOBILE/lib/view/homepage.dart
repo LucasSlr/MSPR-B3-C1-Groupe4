@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:msprapp/view/comptepage.dart';
 import 'package:msprapp/view/historiquedemandepage.dart';
 import 'package:msprapp/view/login.dart';
 import 'package:msprapp/view/maps.dart';
@@ -13,6 +14,7 @@ import 'package:msprapp/view/plantepage.dart';
 import 'astucepage.dart';
 import 'conseilpage.dart';
 import 'demandepage.dart';
+import 'homepagemessage.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -137,6 +139,13 @@ class _HomePageState extends State<HomePage> {
                 );
               }
 
+            if(index == 0){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            }
+
               if(index == 1){
               Navigator.push(
                 context,
@@ -147,22 +156,22 @@ class _HomePageState extends State<HomePage> {
             if(index == 2){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MapsPage()),
+                MaterialPageRoute(builder: (context) => LocationPage()),
               );
             }
 
             if(index == 3){
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => HomePageMessage()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePageMessage()),
+              );
             }
 
             if(index == 4){
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => HomePageCompte()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ComptePage()),
+              );
             }
 
           },
