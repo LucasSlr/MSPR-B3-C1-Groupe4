@@ -212,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           Text(
-            "Resté connecté",
+            "Rester connecté",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold
@@ -280,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             TextSpan(
-              text: ' Créer un compte',
+              text: ' \nCréer un compte',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
