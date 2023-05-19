@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:msprapp/view/homepage.dart';
 import 'package:msprapp/view/login.dart';
 import 'package:intl/intl.dart';
+import 'package:msprapp/view/testview.dart';
 import 'configs/image_picker_configs.dart';
 
 void main(){
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: HomePage(),
       home: LoginScreen(),
+      // home: TestView(),
     );
   }
 }

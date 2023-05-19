@@ -12,6 +12,8 @@ import 'package:msprapp/view/image_picker.dart';
 import 'package:msprapp/view/planteautourpage.dart';
 import 'package:msprapp/view/plantepage.dart';
 
+import '../models/plante.dart';
+import '../service/plante_service.dart';
 import 'astucepage.dart';
 import 'conseilpage.dart';
 import 'demandepage.dart';
@@ -26,6 +28,8 @@ class ComptePage extends StatefulWidget {
 }
 
 class _ComptePageState extends State<ComptePage> {
+  final PlanteService service = PlanteService();
+  late List<Plante> plantes = service.getAllPlante();
   @override build(BuildContext context){
     return Scaffold(
       body: Container(
@@ -261,7 +265,7 @@ class _ComptePageState extends State<ComptePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => PlantePage('$title')),
+            MaterialPageRoute(builder: (context) => PlantePage(1)),
           );
         },
         style: ElevatedButton.styleFrom(

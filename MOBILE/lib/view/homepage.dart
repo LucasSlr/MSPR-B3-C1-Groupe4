@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:msprapp/service/plante_service.dart';
+import 'package:msprapp/service/users_service.dart';
 import 'package:msprapp/view/comptepage.dart';
 import 'package:msprapp/view/historiquedemandepage.dart';
 import 'package:msprapp/view/login.dart';
@@ -11,67 +13,87 @@ import 'package:msprapp/view/image_picker.dart';
 import 'package:msprapp/view/planteautourpage.dart';
 import 'package:msprapp/view/plantepage.dart';
 
+import '../models/plante.dart';
+import '../models/users.dart';
 import 'astucepage.dart';
 import 'conseilpage.dart';
 import 'demandepage.dart';
 import 'homepagemessage.dart';
 
 class HomePage extends StatefulWidget {
-
-  const HomePage({Key? key}): super(key: key);
+  HomePage({Key? key}): super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final PlanteService service = PlanteService();
+  final UserService userService = UserService();
+  late Users user = userService.getUserById(0);
+  late List<Plante>? planteUtilisateur = service.getPlantUser(user);
+  late List<Plante> plantes = service.getAllPlante();
+
   @override build(BuildContext context){
     return Scaffold(
       body: Container(
         child: ListView(
-            children: <Widget>[
-              SizedBox(height: 10.0),
-              _buildWidgetTitle(),
-              SizedBox(height: 50.0),
-              _buildSectionTitle('Mes Plantes'),
-              SizedBox(height: 20.0),
-              _buildSectionItemPlante('Pissenlit'),
-              SizedBox(height: 10.0),
-              _buildSectionItemPlante('Fougère'),
-              SizedBox(height: 10.0),
-              _buildSectionItemPlante('Orchidée'),
-              SizedBox(height: 10.0),
-              _buildSectionItemPlante('Tulipes'),
+          children: List.generate(
+              planteUtilisateur!.length,
+                  (index) => _buildSectionItemPlanteID(index,planteUtilisateur![index])
+          ),
 
-              SizedBox(height: 20.0),
-              _buildSectionTitle('Les plantes Autours'),
-              SizedBox(height: 20.0),
-              _buildSectionItemPlanteAutour('Cactus'),
-              SizedBox(height: 10.0),
-              _buildSectionItemPlanteAutour('Lilas'),
-              SizedBox(height: 10.0),
-              _buildSectionItemPlanteAutour('Roses'),
-              SizedBox(height: 10.0),
-              _buildSectionItemPlanteAutour('Hortensia'),
-              SizedBox(height: 10.0),
-              _buildSectionItemPlanteAutour('Menthe'),
+            // children:[
+            //   SizedBox(height: 10.0),
+            //   _buildWidgetTitle(),
+            //   SizedBox(height: 50.0),
+            //   _buildSectionTitle('Mes Plantes'),
+            //   SizedBox(height: 20.0),
 
+              // ListView(
+              //     children: List.generate(
+              //         planteUtilisateur!.length,
+              //             (index) => _buildSectionItemPlanteID(index,planteUtilisateur![index])
+              //     ),
+              // )
 
-              SizedBox(height: 20.0),
-              _buildSectionTitle('Conseil Entretient'),
-              SizedBox(height: 20.0),
-              _buildSectionItemConseil('Vos Plantes'),
-              SizedBox(height: 10.0),
-              _buildSectionItemConseilMesPlante('Astuce'),
+              // ListView(
+              //   children: List.generate(
+              //       planteUtilisateur!.length,
+              //           (index) => _buildSectionItemPlanteID(index,planteUtilisateur![index])
+              //   ),
+              // ),
 
-              SizedBox(height: 20.0),
-              _buildSectionTitle('Gardes'),
-              SizedBox(height: 20.0),
-              _buildSectionItemDemanderGarde('Demander une garde'),
-              SizedBox(height: 10.0),
-              _buildSectionItemGarde('Historique'),
-              SizedBox(height: 20.0),
-            ],
+            //
+            //   SizedBox(height: 20.0),
+            //   _buildSectionTitle('Les plantes Autours'),
+            //   SizedBox(height: 20.0),
+            //   _buildSectionItemPlanteAutour('Cactus'),
+            //   SizedBox(height: 10.0),
+            //   _buildSectionItemPlanteAutour('Lilas'),
+            //   SizedBox(height: 10.0),
+            //   _buildSectionItemPlanteAutour('Roses'),
+            //   SizedBox(height: 10.0),
+            //   _buildSectionItemPlanteAutour('Hortensia'),
+            //   SizedBox(height: 10.0),
+            //   _buildSectionItemPlanteAutour('Menthe'),
+            //
+            //
+            //   SizedBox(height: 20.0),
+            //   _buildSectionTitle('Conseil Entretient'),
+            //   SizedBox(height: 20.0),
+            //   _buildSectionItemConseil('Vos Plantes'),
+            //   SizedBox(height: 10.0),
+            //   _buildSectionItemConseilMesPlante('Astuce'),
+            //
+            //   SizedBox(height: 20.0),
+            //   _buildSectionTitle('Gardes'),
+            //   SizedBox(height: 20.0),
+            //   _buildSectionItemDemanderGarde('Demander une garde'),
+            //   SizedBox(height: 10.0),
+            //   _buildSectionItemGarde('Historique'),
+            //   SizedBox(height: 20.0),
+            // ],
         ),
       ),
 
@@ -258,7 +280,36 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => PlantePage('$title')),
+            MaterialPageRoute(builder: (context) => PlantePage(1)),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  _buildSectionItemPlanteID(int index,Plante plante) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              plante.nom_plante,
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        onPressed : () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PlantePage(index)),
           );
         },
         style: ElevatedButton.styleFrom(

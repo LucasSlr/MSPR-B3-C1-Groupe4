@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
+import '../models/plante.dart';
+import '../service/plante_service.dart';
+
 class PlantePage extends StatelessWidget {
-  String title;
-  PlantePage(this.title, {Key? key}) : super(key: key);
+  int id;
+  final PlanteService service = PlanteService();
+  late Plante plantes = service.getPlanteById(id);
+  PlantePage(this.id, {Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    final date = randomDateBetween();
+    print(id);
     return Scaffold(
       appBar: AppBar(
         title: Text("Plante"),
@@ -23,27 +28,27 @@ class PlantePage extends StatelessWidget {
             SizedBox(height: 30.0),
             _buildSectionTitle(),
             SizedBox(height: 10.0),
-            _buildSectionTitlePlante('$title'),
+            _buildSectionTitlePlante(plantes.nom_plante),
             SizedBox(height: 10.0),
-            _buildImagePlante('$title.jpg'.toLowerCase()),
+            _buildImagePlante(plantes),
             SizedBox(height: 10.0),
-            _buildSectionTitlePlante('Informations :'),
+            _buildSectionInformation(),
             SizedBox(height: 10.0),
-            _buildSectionInformationPlante('$date'),
+            _buildSectionInformationPlante(plantes),
           ],
         ),
       ),
     );
   }
 
-  _buildSectionTitlePlante(String title) {
+  _buildSectionTitlePlante(String plante) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            '$title',
+            plante,
             style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.w500,
@@ -54,14 +59,33 @@ class PlantePage extends StatelessWidget {
     );
   }
 
-  _buildSectionInformationPlante(String dateAnniv) {
+  _buildSectionInformation() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            'Vous possedez cette plante \ndepuis le $dateAnniv',
+            'Informations :',
+            style: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildSectionInformationPlante(Plante plante) {
+    var date_plante = plante.date_plante;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            'Vous possedez cette plante \ndepuis le $date_plante',
             style: TextStyle(
               fontSize: 20.0,
             ),
@@ -86,25 +110,8 @@ class PlantePage extends StatelessWidget {
     );
   }
 
-  _buildWidgetTitle(){
-    return Container(
-      height: 65,
-      decoration: BoxDecoration(
-        // color: Color.fromARGB(250, 21, 163, 98)
-          color: Colors.green
-      ),
-      child: Text('A Rosa-je',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-            fontSize: 50,
-            color: Colors.white
-        ),
-      ),
-
-    );
-  }
-
-  _buildImagePlante(String image){
+  _buildImagePlante(Plante plante){
+    var image = plante.image_plante.toLowerCase();
     return ClipRRect(
       borderRadius: BorderRadius.circular(20.0),
       child: Image.asset(
@@ -114,22 +121,4 @@ class PlantePage extends StatelessWidget {
     );
   }
 
-   randomDateBetween() {
-    final random = Random();
-    final startDate = DateTime(2022, 9, 1);
-    final endDate = DateTime(2023, 4, 31);
-
-    // Calculate the difference between the two dates in days
-    final difference = endDate.difference(startDate).inDays;
-
-    // Generate a random number between 0 and the difference in days
-    final randomDays = random.nextInt(difference + 1);
-
-    // Add the random number of days to the start date to get the random date
-    final randomDate = startDate.add(Duration(days: randomDays));
-
-    final formattedDate = DateFormat('dd/MM/yyyy').format(randomDate);
-
-    return formattedDate;
-  }
 }
