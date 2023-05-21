@@ -83,8 +83,6 @@ class _ComptePageState extends State<ComptePage> {
             activeColor: Colors.white,
             gap: 8,
             onTabChange: (index){
-              print(index);
-
               Scaffold(
                 body: AnnotatedRegion(
                   value: SystemUiOverlayStyle.light,

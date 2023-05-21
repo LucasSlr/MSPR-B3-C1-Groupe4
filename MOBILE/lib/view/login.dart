@@ -243,7 +243,6 @@ class _LoginScreenState extends State<LoginScreen> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => print("Mdp oublié"),
-        // padding: EdgeInsets.only(right: 0),
         child: Text(
           "Mot de passe Oublié",
           style: TextStyle(
@@ -268,7 +267,6 @@ class _LoginScreenState extends State<LoginScreen> {
               activeColor: Colors.white,
               onChanged: (value) {
                 setState(() {
-                  print(value);
                   isRememberMe = value!;
                 });
               },

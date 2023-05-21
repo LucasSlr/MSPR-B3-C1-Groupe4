@@ -56,8 +56,6 @@ class _HomePageBotaState extends State<HomePageBota> {
           activeColor: Colors.white,
           gap: 8,
           onTabChange: (index){
-            print(index);
-
               Scaffold(
                 body: AnnotatedRegion(
                   value: SystemUiOverlayStyle.light,

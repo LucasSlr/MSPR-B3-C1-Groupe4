@@ -349,13 +349,10 @@ class _CreateScreenState extends State<CreateScreen> {
   Widget buildLoginBtn() {
     final UserService userService = UserService();
     final countUser = userService.CountUser();
-    print(countUser);
     final futureId = countUser + 1 ;
     var nomText = nom.text;
     var prenomText = prenom.text;
     final login = '$prenomText\.$nomText';
-    print('Geeks''For''Geeks');
-    print(login);
     bool checkNom;
     bool checkPrenom;
     bool checkPass;
@@ -404,7 +401,6 @@ class _CreateScreenState extends State<CreateScreen> {
 
           if(checkNom == true && checkPrenom == true && checkPass == true && checkPassConfirm == true && comparePass == true ){
             Users createUser = Users.require(futureId,nom.text,prenom.text,login,pass.text);
-            print(createUser.id);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomePage(usersConnected: createUser)),

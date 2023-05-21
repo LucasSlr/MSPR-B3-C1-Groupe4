@@ -16,7 +16,6 @@ class PlantePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(id);
     return Scaffold(
       appBar: AppBar(
         title: Text("Plante"),
