@@ -38,17 +38,25 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Container(
         child: ListView(
-          children: List.generate(
-              planteUtilisateur!.length,
-                  (index) => _buildSectionItemPlanteID(index,planteUtilisateur![index])
-          ),
+          // children: List.generate(
+          //     planteUtilisateur!.length,
+          //         (index) => _buildSectionItemPlanteID(index,planteUtilisateur![index])
+          // ),
 
-            // children:[
-            //   SizedBox(height: 10.0),
-            //   _buildWidgetTitle(),
-            //   SizedBox(height: 50.0),
-            //   _buildSectionTitle('Mes Plantes'),
-            //   SizedBox(height: 20.0),
+            children:[
+              SizedBox(height: 10.0),
+              _buildWidgetTitle(),
+              SizedBox(height: 50.0),
+              _buildSectionTitle('Mes Plantes'),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlante('Pissenlit',0),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlante('Fougère',1),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlante('Orchidée',2),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlante('Tulipe',3),
+              SizedBox(height: 10.0),
 
               // ListView(
               //     children: List.generate(
@@ -57,43 +65,34 @@ class _HomePageState extends State<HomePage> {
               //     ),
               // )
 
-              // ListView(
-              //   children: List.generate(
-              //       planteUtilisateur!.length,
-              //           (index) => _buildSectionItemPlanteID(index,planteUtilisateur![index])
-              //   ),
-              // ),
+              SizedBox(height: 20.0),
+              _buildSectionTitle('Les plantes Autours'),
+              SizedBox(height: 20.0),
+              _buildSectionItemPlanteAutour('Cactus'),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlanteAutour('Lilas'),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlanteAutour('Roses'),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlanteAutour('Hortensia'),
+              SizedBox(height: 10.0),
+              _buildSectionItemPlanteAutour('Menthe'),
+              SizedBox(height: 20.0),
 
-            //
-            //   SizedBox(height: 20.0),
-            //   _buildSectionTitle('Les plantes Autours'),
-            //   SizedBox(height: 20.0),
-            //   _buildSectionItemPlanteAutour('Cactus'),
-            //   SizedBox(height: 10.0),
-            //   _buildSectionItemPlanteAutour('Lilas'),
-            //   SizedBox(height: 10.0),
-            //   _buildSectionItemPlanteAutour('Roses'),
-            //   SizedBox(height: 10.0),
-            //   _buildSectionItemPlanteAutour('Hortensia'),
-            //   SizedBox(height: 10.0),
-            //   _buildSectionItemPlanteAutour('Menthe'),
-            //
-            //
-            //   SizedBox(height: 20.0),
-            //   _buildSectionTitle('Conseil Entretient'),
-            //   SizedBox(height: 20.0),
-            //   _buildSectionItemConseil('Vos Plantes'),
-            //   SizedBox(height: 10.0),
-            //   _buildSectionItemConseilMesPlante('Astuce'),
-            //
-            //   SizedBox(height: 20.0),
-            //   _buildSectionTitle('Gardes'),
-            //   SizedBox(height: 20.0),
-            //   _buildSectionItemDemanderGarde('Demander une garde'),
-            //   SizedBox(height: 10.0),
-            //   _buildSectionItemGarde('Historique'),
-            //   SizedBox(height: 20.0),
-            // ],
+              _buildSectionTitle('Conseil Entretient'),
+              SizedBox(height: 20.0),
+              _buildSectionItemConseil('Vos Plantes'),
+              SizedBox(height: 10.0),
+              _buildSectionItemConseilMesPlante('Astuce'),
+              SizedBox(height: 20.0),
+
+              _buildSectionTitle('Gardes'),
+              SizedBox(height: 20.0),
+              _buildSectionItemDemanderGarde('Demander une garde'),
+              SizedBox(height: 10.0),
+              _buildSectionItemGarde('Historique'),
+              SizedBox(height: 20.0),
+            ],
         ),
       ),
 
@@ -261,7 +260,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildSectionItemPlante(String title) {
+  _buildSectionItemPlante(String title, int id) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: ElevatedButton(
@@ -280,12 +279,24 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => PlantePage(1)),
+            MaterialPageRoute(builder: (context) => PlantePage(id)),
           );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
         ),
+      ),
+    );
+  }
+
+  _buildSectionItemMesPlante(){
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ListView(
+        children: List.generate(
+              planteUtilisateur!.length,
+                  (index) => _buildSectionItemPlanteID(index,planteUtilisateur![index])
+        )
       ),
     );
   }

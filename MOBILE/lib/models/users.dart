@@ -1,4 +1,5 @@
 import 'package:msprapp/models/plante.dart';
+import 'package:msprapp/models/specialite.dart';
 import 'package:msprapp/models/type_users.dart';
 
 class Users {
@@ -9,9 +10,10 @@ class Users {
   String login;
   String mdp;
   List<Plante> ?plante;
+  List<Specialite> ?spe;
   // TypeUsers typeUsers;
 
-  Users(this.id, this.nom, this.prenom, this.login, this.mdp, this.plante);
+  Users(this.id, this.nom, this.prenom, this.login, this.mdp, this.plante, this.spe);
 
   Users.fromJson(Map<String, dynamic> json):
       id = json['id'],
@@ -20,6 +22,9 @@ class Users {
       login = json['login'],
       mdp = json['mdp'],
       plante = (json['items'] as List).map((item) => Plante
+          .fromJson(item))
+          .toList(),
+      spe = (json['items'] as List).map((item) => Specialite
           .fromJson(item))
           .toList();
 
@@ -43,6 +48,7 @@ class Users {
       map['login'],
       map['mdp'],
       map['plante'],
+      map['spe'],
       // map['typeUsers'],
   );
 

@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:msprapp/models/plante.dart';
+import 'package:msprapp/models/specialite.dart';
 import 'package:msprapp/models/users.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UserDataBase {
   static List<Plante>? defaultPlantePlante;
+  static List<Specialite>? defaultSpecialite;
 
   UserDataBase._();
 
@@ -66,13 +68,14 @@ class UserDataBase {
   }
 
   final List<Plante> defaultPlante = [
-    
     Plante(1, "Pissenlit", "Pissenlit.png", "07/04/2023")
   ];
+
+  final List<Specialite> defaultSpe = [];
   
   final List<Users> defaultUser = [
     
-    Users(1, 'test', 'test', 'test', 'test',defaultPlantePlante)
+    Users(1, 'test', 'test', 'test', 'test',defaultPlantePlante,defaultSpecialite)
   ];
 
 
