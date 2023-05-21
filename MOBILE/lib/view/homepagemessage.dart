@@ -141,10 +141,10 @@ class _HomePageMessageState extends State<HomePageMessage> {
               }
 
               if(index == 4){
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => ComptePage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ComptePage(usersConnected: widget.usersConnected)),
+                );
               }
 
             },
