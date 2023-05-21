@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:msprapp/models/users.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 import '../configs/image_picker_configs.dart';
@@ -46,6 +47,7 @@ class ImagePicker extends StatefulWidget {
   /// Default constructor for the photo and media image picker.
   const ImagePicker(
       {final Key? key,
+        required this.usersConnected,
       this.maxCount = 10,
       this.isFullscreenImage = false,
       this.isCaptureFirst = true,
@@ -65,6 +67,10 @@ class ImagePicker extends StatefulWidget {
   /// Default mode for selecting image: capture new image or select
   /// image from album.
   final bool isCaptureFirst;
+
+  final Users usersConnected;
+
+
 
   @override
   _ImagePickerState createState() => _ImagePickerState();
@@ -490,7 +496,7 @@ class _ImagePickerState extends State<ImagePicker>
             leading: ElevatedButton(
               onPressed: (){
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => HomePage(usersConnected: widget.usersConnected)),
                 );
               },
               child: null,

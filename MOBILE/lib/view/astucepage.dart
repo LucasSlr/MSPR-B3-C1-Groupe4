@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../models/users.dart';
+
 class AstucePage extends StatelessWidget {
-  const AstucePage({Key? key}) : super(key: key);
+  final Users usersConnected;
+  AstucePage({Key? key, required this.usersConnected }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

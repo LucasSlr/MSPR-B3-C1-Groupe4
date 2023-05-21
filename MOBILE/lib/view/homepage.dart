@@ -21,7 +21,8 @@ import 'demandepage.dart';
 import 'homepagemessage.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}): super(key: key);
+  final Users usersConnected;
+  HomePage({Key? key, required this.usersConnected}): super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   final PlanteService service = PlanteService();
   final UserService userService = UserService();
   late Users user = userService.getUserById(0);
-  late List<Plante>? planteUtilisateur = service.getPlantUser(user);
+  late List<Plante>? planteUtilisateur = service.getPlantUser(widget.usersConnected);
   late List<Plante> plantes = service.getAllPlante();
 
   @override build(BuildContext context){
@@ -163,35 +164,35 @@ class _HomePageState extends State<HomePage> {
             if(index == 0){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => HomePage(usersConnected: widget.usersConnected)),
               );
             }
 
               if(index == 1){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ImagePicker()),
+                MaterialPageRoute(builder: (context) => ImagePicker(usersConnected: widget.usersConnected)),
               );
             }
 
             if(index == 2){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LocationPage()),
+                MaterialPageRoute(builder: (context) => LocationPage(usersConnected: widget.usersConnected)),
               );
             }
 
             if(index == 3){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePageMessage()),
+                MaterialPageRoute(builder: (context) => HomePageMessage(usersConnected: widget.usersConnected)),
               );
             }
 
             if(index == 4){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ComptePage()),
+                MaterialPageRoute(builder: (context) => ComptePage(usersConnected: widget.usersConnected)),
               );
             }
 
@@ -407,7 +408,7 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => AstucePage()),
+            MaterialPageRoute(builder: (context) => AstucePage(usersConnected: widget.usersConnected)),
           );
         },
         style: ElevatedButton.styleFrom(
@@ -436,7 +437,7 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed : () {
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DemandeGarde()),
+            MaterialPageRoute(builder: (context) => DemandeGarde(usersConnected: widget.usersConnected)),
           );
         },
         style: ElevatedButton.styleFrom(

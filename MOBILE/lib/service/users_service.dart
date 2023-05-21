@@ -1,30 +1,15 @@
-import 'package:msprapp/models/type_users.dart';
+import 'package:flutter/rendering.dart';
 import 'package:msprapp/models/data/user_data.dart';
 import 'package:msprapp/models/users.dart';
 
 import '../models/plante.dart';
+import '../models/specialite.dart';
+import '../models/users.dart';
 
 class UserService {
 
-  // var _typeusers = [TypeUsers(1, "Client"),TypeUsers(2, "Botanniste")];
-
-  // var _users = List.generate(31, (index) {
-  //   bool type = index%3==0;
-  //   return Users(
-  //       index,
-  //       "Nom Utilisateur ${index}",
-  //       "Prenom Utilisateur ${index}",
-  //       "Login Utilisateur ${index}",
-  //       "Mot de Passe Utilisateur ${index}",
-  //       type ? TypeUsers(1, "Client") : TypeUsers(2, "Botanniste"));
-  //
-  // });
-
-  // List<TypeUsers> getTypeUsers() {
-  //   return _typeusers;
-  // }
-
   var _utilisateur;
+  final List<Users> listUser = UserData.buildList();
 
   UserService() {
     _utilisateur = UserData.buildList();
@@ -38,8 +23,16 @@ class UserService {
     return _utilisateur;
   }
 
-  Users getUserById(id) {
+  Users getUserById(int id) {
     return _utilisateur[id];
   }
 
+  int CountUser() {
+    return listUser.length;
+  }
+
+  getUserByName(String login) {
+    final Users ?isUser = listUser.firstWhere((Users) => Users.login == login);
+    return isUser;
+  }
 }

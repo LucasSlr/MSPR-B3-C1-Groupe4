@@ -13,6 +13,7 @@ import 'package:msprapp/view/planteautourpage.dart';
 import 'package:msprapp/view/plantepage.dart';
 
 import '../models/plante.dart';
+import '../models/users.dart';
 import '../service/plante_service.dart';
 import 'astucepage.dart';
 import 'conseilpage.dart';
@@ -20,8 +21,8 @@ import 'demandepage.dart';
 import 'homepage.dart';
 
 class ComptePage extends StatefulWidget {
-
-  const ComptePage({Key? key}): super(key: key);
+  final Users usersConnected;
+  ComptePage({Key? key, required this.usersConnected}): super(key: key);
 
   @override
   State<ComptePage> createState() => _ComptePageState();
@@ -40,15 +41,13 @@ class _ComptePageState extends State<ComptePage> {
             SizedBox(height: 50.0),
             _buildSectionTitle('Mon Compte'),
             SizedBox(height: 20.0),
-            _buildSectionItemCompte('Nom : test'),
+            _buildSectionItemCompteNom(widget.usersConnected),
             SizedBox(height: 20.0),
-            _buildSectionItemCompte('Prenom : user'),
+            _buildSectionItemComptePrenom(widget.usersConnected),
             SizedBox(height: 20.0),
-            _buildSectionItemCompte('Login : test.user'),
+            _buildSectionItemCompteLogin(widget.usersConnected),
             SizedBox(height: 20.0),
-            _buildSectionItemCompte('Mot de pass : test'),
-            SizedBox(height: 20.0),
-            _buildSectionItemCompte('Adresse : Montpellier Route de \nGanges Apothicaire'),
+            _buildSectionItemComptePass(widget.usersConnected),
             SizedBox(height: 20.0),
             _buildSectionTitle('Plante posseder'),
             SizedBox(height: 20.0),
@@ -131,35 +130,35 @@ class _ComptePageState extends State<ComptePage> {
               if(index == 0){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => HomePage(usersConnected: widget.usersConnected)),
                 );
               }
 
               if(index == 1){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ImagePicker()),
+                  MaterialPageRoute(builder: (context) => ImagePicker(usersConnected: widget.usersConnected)),
                 );
               }
 
               if(index == 2){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LocationPage()),
+                  MaterialPageRoute(builder: (context) => LocationPage(usersConnected: widget.usersConnected)),
                 );
               }
 
               if(index == 3){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePageMessage()),
+                  MaterialPageRoute(builder: (context) => HomePageMessage(usersConnected: widget.usersConnected)),
                 );
               }
 
               if(index == 4){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ComptePage()),
+                  MaterialPageRoute(builder: (context) => ComptePage(usersConnected: widget.usersConnected)),
                 );
               }
 
@@ -228,14 +227,68 @@ class _ComptePageState extends State<ComptePage> {
     );
   }
 
-  _buildSectionItemCompte(String historique) {
+  _buildSectionItemCompteNom(Users users) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            '$historique',
+            'Nom : ' + users.nom,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildSectionItemComptePrenom(Users users) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            'Prenom : ' + users.prenom,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildSectionItemCompteLogin(Users users) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            'Login : ' + users.login,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildSectionItemComptePass(Users users) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            'Mot de passe : ' + users.mdp,
             style: TextStyle(
               color: Colors.black,
               fontSize: 20.0,

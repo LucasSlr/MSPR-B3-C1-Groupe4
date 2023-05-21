@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../models/users.dart';
 import 'homepage.dart';
 
 class DemandeGarde extends StatefulWidget {
-  const DemandeGarde({Key? key}) : super(key: key);
+  final Users usersConnected;
+  DemandeGarde({Key? key, required this.usersConnected}) : super(key: key);
 
   @override
   State<DemandeGarde> createState() => _DemandeGardeState();
@@ -268,7 +270,7 @@ class _DemandeGardeState extends State<DemandeGarde> {
       child: ElevatedButton
         (
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(usersConnected: widget.usersConnected)));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,

@@ -1,23 +1,86 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:msprapp/service/users_service.dart';
+import 'package:msprapp/view/createcompte.dart';
 import 'package:msprapp/view/homepage.dart';
 
+import '../models/users.dart';
 import 'homepagebota.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _LoginScreenState();
-
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final UserService userService = UserService();
 
   bool isRememberMe = false;
   final login = TextEditingController();
   final pass = TextEditingController();
 
+  @override
+  Widget build (BuildContext context) {
+    return Scaffold(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          child: Stack(
+            children: <Widget> [
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.green,
+                      Colors.lightGreen,
+                      Colors.green,
+                      Colors.lightGreen,
+                    ],
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 120,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Text(
+                        'A Rosa-je',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      SizedBox(height: 60),
+                      buildLogin(),
+                      SizedBox(height: 30),
+                      buildPassComfirm(),
+                      SizedBox(height: 30),
+                      buildForgetPass(),
+                      buildRememberCb(),
+                      buildLoginBtn(),
+                      buildSignInBtn(),
+                    ],
+
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget buildLogin() {
     return Column(
@@ -229,28 +292,19 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: ElevatedButton
         (
-        // onPressed: () => print([login.text, pass.text]),
         onPressed: () {
-          if(login.text == "test.user"){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          }
-          if(login.text == "test.botaniste"){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePageBota()),
-            );
-          }
 
-          if(login.text != "test.user" && login.text != "test.botaniste"){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
+          try {
+            final Users users = userService.getUserByName(login.text);
+            if(users.mdp == pass.text){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage(usersConnected: users)),
+              );
+            }
+          } catch (e){
+            print('Une erreur s\'est produite : $e');
           }
-
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
@@ -267,7 +321,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget buildSignInBtn() {
     return GestureDetector(
-      onTap: () => print("Créer un compte"),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CreateScreen()),
+      ),
       child: RichText(
         text: TextSpan(
           children: [
@@ -288,67 +345,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build (BuildContext context) {
-    return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          child: Stack(
-            children: <Widget> [
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.green,
-                      Colors.lightGreen,
-                      Colors.green,
-                      Colors.lightGreen,
-                    ],
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 25,
-                    vertical: 120,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget> [
-                      Text(
-                        'A Rosa-je',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                      SizedBox(height: 60),
-                      buildLogin(),
-                      SizedBox(height: 30),
-                      buildPassComfirm(),
-                      SizedBox(height: 30),
-                      buildForgetPass(),
-                      buildRememberCb(),
-                      buildLoginBtn(),
-                      buildSignInBtn(),
-                    ],
-
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

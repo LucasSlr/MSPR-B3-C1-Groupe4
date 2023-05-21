@@ -8,9 +8,11 @@ import 'package:msprapp/view/login.dart';
 import 'package:msprapp/view/maps.dart';
 import 'package:msprapp/view/image_picker.dart';
 
-class HomePageBota extends StatefulWidget {
+import '../models/users.dart';
 
-  const HomePageBota({Key? key}): super(key: key);
+class HomePageBota extends StatefulWidget {
+  final Users usersConnected;
+  HomePageBota({Key? key, required this.usersConnected}): super(key: key);
 
   @override
   State<HomePageBota> createState() => _HomePageBotaState();
@@ -85,30 +87,30 @@ class _HomePageBotaState extends State<HomePageBota> {
               );
 
               if(index == 0){
-                // Navigator.push(context,
-                //   MaterialPageRoute(builder: (context) => HomePageBota()),
-                //     );
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomePageBota(usersConnected: widget.usersConnected)),
+                    );
               }
 
               if(index == 1){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ImagePicker()),
+                MaterialPageRoute(builder: (context) => ImagePicker(usersConnected: widget.usersConnected)),
               );
             }
 
             if(index == 2){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LocationPage()),
+                MaterialPageRoute(builder: (context) => LocationPage(usersConnected: widget.usersConnected)),
               );
             }
 
             if(index == 3){
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => MapsPage()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LocationPage(usersConnected: widget.usersConnected)),
+              );
             }
 
             if(index == 4){

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:msprapp/view/homepage.dart';
+
+import '../models/users.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // const LatLng currentLocation = LatLng( 43.633735, 3.853324);
 
 class LocationPage extends StatefulWidget {
-  const LocationPage({Key? key}) : super(key: key);
+  final Users usersConnected;
+  LocationPage({Key? key, required this.usersConnected}) : super(key: key);
 
   @override
   State<LocationPage> createState() => _LocationPageState();
@@ -21,7 +24,7 @@ class _LocationPageState extends State<LocationPage> {
         leading: ElevatedButton(
           onPressed: (){
             Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => HomePage(usersConnected:  widget.usersConnected)),
             );
           },
           child: null,
@@ -30,11 +33,6 @@ class _LocationPageState extends State<LocationPage> {
           ),
         ),
       ),
-      // body: GoogleMap(
-      //   initialCameraPosition: CameraPosition(
-      //       target: LatLng(0,0),
-      //   ),
-      // ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:msprapp/models/plante.dart';
 import 'package:msprapp/models/specialite.dart';
-import 'package:msprapp/models/type_users.dart';
 import 'package:msprapp/models/users.dart';
 
 class UserData {
@@ -19,11 +18,11 @@ class UserData {
 
     List<Users> _list = [];
 
-    _list.add(Users(1, "test", "test", "test.test", "test",plante,spe));
-    _list.add(Users(2, "test", "test", "test.test", "test",planteNull,spe));
-    _list.add(Users(3, "test", "test", "test.test", "test",planteNull,spe));
-    _list.add(Users(4, "test", "test", "test.test", "test",planteNull,spe));
-    _list.add(Users(5, "test", "test", "test.test", "test",plante,spe));
+    _list.add(Users(1, "test1", "test1", "test1.Test", "test", 'Montpellier', 'Route de Ganges', 'Bat 4 étage 4',plante,spe));
+    _list.add(Users(2, "test2", "test2", "test2.Test", "test", 'Montpellier', 'Route de Ganges', 'Bat 4 étage 4',planteNull,spe));
+    _list.add(Users(3, "test3", "test3", "test3.Test", "test", 'Montpellier', 'Route de Ganges', 'Bat 4 étage 4',planteNull,spe));
+    _list.add(Users(4, "test4", "test4", "test4.Test", "test", 'Montpellier', 'Route de Ganges', 'Bat 4 étage 4',planteNull,spe));
+    _list.add(Users(5, "test5", "test5", "test5.Test", "test", 'Montpellier', 'Route de Ganges', 'Bat 4 étage 4',plante,spe));
 
     return _list;
   }

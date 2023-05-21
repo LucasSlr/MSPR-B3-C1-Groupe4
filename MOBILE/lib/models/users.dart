@@ -1,6 +1,5 @@
 import 'package:msprapp/models/plante.dart';
 import 'package:msprapp/models/specialite.dart';
-import 'package:msprapp/models/type_users.dart';
 
 class Users {
 
@@ -9,11 +8,14 @@ class Users {
   String prenom;
   String login;
   String mdp;
+  String? ville;
+  String? adrs_rue;
+  String? info_adresse;
   List<Plante> ?plante;
   List<Specialite> ?spe;
-  // TypeUsers typeUsers;
 
-  Users(this.id, this.nom, this.prenom, this.login, this.mdp, this.plante, this.spe);
+  Users(this.id, this.nom, this.prenom, this.login, this.mdp, this.ville, this.adrs_rue, this.info_adresse, this.plante, this.spe);
+  Users.require(this.id, this.nom, this.prenom, this.login, this.mdp);
 
   Users.fromJson(Map<String, dynamic> json):
       id = json['id'],
@@ -21,6 +23,9 @@ class Users {
       prenom = json['prenom'],
       login = json['login'],
       mdp = json['mdp'],
+      ville = json['ville'],
+      adrs_rue = json['adrs_rue'],
+      info_adresse = json['info_adresse'],
       plante = (json['items'] as List).map((item) => Plante
           .fromJson(item))
           .toList(),
@@ -36,8 +41,11 @@ class Users {
       'prenom' : prenom,
       'login' : login,
       'mdp' : mdp,
+      'ville' : ville,
+      'adrs_rue' : adrs_rue,
+      'info_adresse' : info_adresse,
       'plante' : plante,
-      // 'typeUsers' : typeUsers
+      'spe' : spe,
     };
   }
 
@@ -47,9 +55,11 @@ class Users {
       map['prenom'],
       map['login'],
       map['mdp'],
+      map['ville'],
+      map['adrs_rue'],
+      map['info_adresse'],
       map['plante'],
       map['spe'],
-      // map['typeUsers'],
   );
 
 }

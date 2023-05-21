@@ -75,7 +75,7 @@ class UserDataBase {
   
   final List<Users> defaultUser = [
     
-    Users(1, 'test', 'test', 'test', 'test',defaultPlantePlante,defaultSpecialite)
+    Users(1, 'Test', 'test', 'test.Test', 'test', 'Montpellier', 'Route de Ganges', 'Bat 4 étage 4', defaultPlantePlante,defaultSpecialite)
   ];
 
 

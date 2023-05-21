@@ -12,14 +12,15 @@ import 'package:msprapp/view/messagepage.dart';
 import 'package:msprapp/view/planteautourpage.dart';
 import 'package:msprapp/view/plantepage.dart';
 
+import '../models/users.dart';
 import 'astucepage.dart';
 import 'conseilpage.dart';
 import 'demandepage.dart';
 import 'homepage.dart';
 
 class HomePageMessage extends StatefulWidget {
-
-  const HomePageMessage({Key? key}): super(key: key);
+  final Users usersConnected;
+  HomePageMessage({Key? key, required this.usersConnected}): super(key: key);
 
   @override
   State<HomePageMessage> createState() => _HomePageMessageState();
@@ -111,23 +112,23 @@ class _HomePageMessageState extends State<HomePageMessage> {
                 );
               }
               if(index == 0){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => HomePage()),
+                // );
               }
 
               if(index == 1){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ImagePicker()),
+                  MaterialPageRoute(builder: (context) => ImagePicker(usersConnected: widget.usersConnected)),
                 );
               }
 
               if(index == 2){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LocationPage()),
+                  MaterialPageRoute(builder: (context) => LocationPage(usersConnected: widget.usersConnected)),
                 );
               }
 
@@ -135,15 +136,15 @@ class _HomePageMessageState extends State<HomePageMessage> {
                 activate();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePageMessage()),
+                  MaterialPageRoute(builder: (context) => HomePageMessage(usersConnected: widget.usersConnected)),
                 );
               }
 
               if(index == 4){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ComptePage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => ComptePage()),
+                // );
               }
 
             },
