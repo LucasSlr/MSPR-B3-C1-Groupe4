@@ -191,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget> [
         Text(
-          'Confirmez votre Mot de Passe',
+          'Mot de Passe',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16,

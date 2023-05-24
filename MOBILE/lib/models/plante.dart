@@ -1,4 +1,6 @@
+
 class Plante {
+
   final int id_plante;
   final String nom_plante;
   final String image_plante;

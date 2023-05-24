@@ -1,4 +1,6 @@
+
 class Specialite {
+
   final int id_spe;
   final String libelle_spe;
 

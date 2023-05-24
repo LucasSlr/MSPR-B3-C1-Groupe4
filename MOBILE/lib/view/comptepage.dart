@@ -29,6 +29,10 @@ class ComptePage extends StatefulWidget {
 }
 
 class _ComptePageState extends State<ComptePage> {
+  final nom = TextEditingController();
+  final prenom = TextEditingController();
+  final nomUser = TextEditingController();
+  final pass = TextEditingController();
   final PlanteService service = PlanteService();
   late List<Plante> plantes = service.getAllPlante();
   @override build(BuildContext context){
@@ -42,12 +46,15 @@ class _ComptePageState extends State<ComptePage> {
             _buildSectionTitle('Mon Compte'),
             SizedBox(height: 20.0),
             _buildSectionItemCompteNom(widget.usersConnected),
+            // buildNom(),
             SizedBox(height: 20.0),
             _buildSectionItemComptePrenom(widget.usersConnected),
             SizedBox(height: 20.0),
             _buildSectionItemCompteLogin(widget.usersConnected),
             SizedBox(height: 20.0),
             _buildSectionItemComptePass(widget.usersConnected),
+            ajoutInfo(),
+            buildModifInfo(),
             SizedBox(height: 20.0),
             _buildSectionTitle('Plante posseder'),
             SizedBox(height: 20.0),
@@ -321,6 +328,52 @@ class _ComptePageState extends State<ComptePage> {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget buildModifInfo() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(vertical: 5),
+      width: double.infinity,
+      child: ElevatedButton
+        (
+        onPressed: () {
+
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+        child: Text('Modifier mes informations',
+          style: TextStyle(
+            color: Colors.green,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget ajoutInfo() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(vertical: 5),
+      width: double.infinity,
+      child: ElevatedButton
+        (
+        onPressed: () {
+
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+        child: Text('Ajouter mon adresse',
+          style: TextStyle(
+            color: Colors.green,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

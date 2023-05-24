@@ -71,6 +71,7 @@ class _CreateScreenState extends State<CreateScreen> {
                       buildPassConfirm(),
                       SizedBox(height: 10),
                       buildLoginBtn(),
+                      buildRememberCb(),
                     ],
                   ),
                 ),
@@ -418,6 +419,36 @@ class _CreateScreenState extends State<CreateScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget buildRememberCb(){
+    return Container(
+      height: 20,
+      child: Row(
+        children: <Widget> [
+          Theme(
+            data: ThemeData(unselectedWidgetColor: Colors.white),
+            child: Checkbox(
+              value: isRememberMe,
+              checkColor: Colors.green,
+              activeColor: Colors.white,
+              onChanged: (value) {
+                setState(() {
+                  isRememberMe = value!;
+                });
+              },
+            ),
+          ),
+          Text(
+            "Lu et accepté les thermes d'utilisation",
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold
+            ),
+          ),
+        ],
       ),
     );
   }
